@@ -11,40 +11,63 @@ const MainCard = () => {
             <form className='flex flex-col items-center mr-4'>
 
                 <div className='items-center mb-4'>
-                    <label className='text-gray-700 mr-2'>Bill</label>
-                    <div className='relative flex-1'>
+                    <label className='font-medium text-neutral-dark-grayish-cyan text-sm mb-1 mr-2'>Bill</label>
+                    <div className='relative flex bg-neutral-very-light-grayish-cyan'>
                         <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
-                            <img src={dollarIcon} alt='Dollar Icon' className='h-5 w-5 text-gray-500' />
+                            <img src={dollarIcon} alt='Dollar Icon' className='h-3 w-3' />
                         </span>
                         <input
                             type='text'
                             value={totalAmount}
-                            className='w-full py-2 pl-10 pr-10 ml-auto rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500'
+                            className='w-full py-2 pl-10 pr-10 ml-auto font-semibold font-sm text-neutral-grayish-cyan rounded-lg  bg-neutral-very-light-grayish-cyan '
                         />
                     </div>
                 </div>
+                <div className="items-center mb-4">
+                    <p className='font-medium text-neutral-dark-grayish-cyan text-sm mb-1'>Select Tip %</p>
+                    <div className='grid grid-cols-3 gap-4 '>
+                        <box className='bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white '>5%</box>
+                        <box className='bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white'>10%</box>
+                        <box className='bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white'>15%</box>
+                        <box className='bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white'>25%</box>
+                        <box className='bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white'>50%</box>
+                        <box className='bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold'>Custom</box>
+                    </div>
 
-                <p>Select Tip</p>
-                <div className='grid'>
-                    <box>5%</box>
-                    <box>10%</box>
-                    <box>15%</box>
-                    <box>25%</box>
-                    <box>50%</box>
-                    <box>Custom</box>
                 </div>
-
                 <div className='items-center mb-4'>
-                    <label className='text-gray-700 mr-2'>Number of People</label>
-                    <div className='relative flex-1'>
-                        <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
-                            <img src={personIcon} alt='Dollar Icon' className='h-5 w-5 text-gray-500' />
+                    <label className='mr-2 font-medium text-neutral-dark-grayish-cyan text-sm mb-1'>Number of People</label>
+                    {/* <div className='relative flex bg-neutral-very-light-grayish-cyan'>
+                        <span className='absolute inset-y-0 left-0 flex items-center pl-3 pr-10'>
+                            <img src={personIcon} alt='Person Icon' className='h-3 w-3 ' />
+                        </span>
+                        <input
+                            type='text'
+                            value={`${people}`}
+                            className='w-full right-0 py-2 pl-10 pr-10 rounded-lg font-semibold font-sm text-neutral-grayish-cyan bg-neutral-very-light-grayish-cyan'
+                        />
+                    </div> */}
+                    <div className='flex relative items-center bg-neutral-very-light-grayish-cyan'>
+                        <span className='pl-3 py-2 mr-12  flex items-center inset-y-0 left-0'>
+
+                            <img src={personIcon} alt='Person Icon' className='h-3 w-3 ' />
                         </span>
                         <input
                             type='text'
                             value={people}
-                            className='w-full py-2 pl-10 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500'
+                            className='w-full  flex items-center rounded-lg font-semibold font-sm text-neutral-grayish-cyan bg-transparent'
                         />
+                        {/* <input
+                            type='text'
+                            value={people}
+                            className='w-full py-2 pl-10 pr-10  flex-items-center inset-y-0 right-0 rounded-lg font-semibold font-sm text-neutral-grayish-cyan bg-transparent'
+                        />
+                        <span className=' pl-3'>
+                            <img src={personIcon} alt='Person Icon' className='h-3 w-3' />
+                        </span>
+                        <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
+                            {people}
+                        </span> */}
                     </div>
                 </div>
             </form>

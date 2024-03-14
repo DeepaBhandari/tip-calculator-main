@@ -10,7 +10,7 @@ function App() {
         <img
           src={logo}
           alt="Logo"
-          className="w-16 h-16 mb-4"
+          className="w-12 h-8 mb-8"
         />
         {/* Main Card Component */}
         <MainCard />

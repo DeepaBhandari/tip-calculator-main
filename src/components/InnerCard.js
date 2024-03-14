@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import dollarIcon from '../assets/images/icon-dollar.svg';
 
 const InnerCard = () => {
-
+    const [tipAmount, setTipAmount] = useState(0);
     return (
         <>
-            <label className="text-gray-700 mb-2">Tip Amount/Person</label>
-            <span className="border border-gray-300 rounded-md py-2 px-3 mb-4">Calculated Tip Amount</span>
+            <div className='flex mb-2 font-fontSize'>
+                <p className="text-neutral-white ">Tip Amount<br /><p className="text-sm font-semibold text-neutral-grayish-cyan">/  person</p></p>
+                <div className='flex item-center ml-auto  text-neutral-light-grayish-cyan'>
 
-            <label className="text-gray-700 mb-2">Total/Person</label>
-            <span className="border border-gray-300 rounded-md py-2 px-3 mb-4">Calculated Total Amount</span>
+                    <img src={dollarIcon} alt='Dollar Icon' className='  h-5 w-5 ' />
 
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-md">Reset</button>
+                    <input
+                        type='text'
+                        value={tipAmount}
+                        className='text-neutral-grayish-cyan font-bold bg-neutral-very-dark-cyan w-full py-2 pl-10 pr-10  text-bold'
+                    />
+                </div>
+            </div>
+            <div className='flex mb-2'>
+                <p className="text-neutral-white ">Total<br /><p className="text-sm font-semibold text-neutral-grayish-cyan">/  person</p></p>
+            </div>
+
+            <button className="bg-neutral-dark-grayish-cyan text-neutral-very-dark-cyan font-bold font-md py-2 px-4 rounded-md mt-auto ">RESET</button>
 
         </>
     )
