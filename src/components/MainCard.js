@@ -17,7 +17,8 @@ const MainCard = () => {
         setTipPercentage(tipPercentage);
         handleCalculateTip(customTipPercentage);
     }
-    const handleCustomPercentage = () => {
+    const handleCustomPercentage = (e) => {
+        e.preventDefault();
         setShowCustomInput(true);
         setCustomTipPercentage('');
 
@@ -71,7 +72,7 @@ const MainCard = () => {
                         ))}
                         <button
                             className='bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan'
-                            onClick={() => handleCustomPercentage()}
+                            onClick={(e) => handleCustomPercentage(e)}
                         >Custom</button>
                     </div>
 
