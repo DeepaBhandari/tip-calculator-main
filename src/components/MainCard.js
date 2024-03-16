@@ -30,10 +30,13 @@ const MainCard = () => {
         setTotalPerPerson(totalPerPerson.toFixed(2));
     };
     const handleTipPercentageChange = (selectedTipPercentage) => {
+        setShowCustomInput(selectedTipPercentage === 'Custom');
         setTipPercentage(selectedTipPercentage);
-        const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(selectedTipPercentage, billAmount, people);
-        setTipAmount(tipAmountPerPerson.toFixed(2));
-        setTotalPerPerson(totalPerPerson.toFixed(2));
+        if (selectedTipPercentage !== 'Custom') {
+            const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(selectedTipPercentage, billAmount, people);
+            setTipAmount(tipAmountPerPerson.toFixed(2));
+            setTotalPerPerson(totalPerPerson.toFixed(2));
+        }
     };
     const handlePeopleChange = (e) => {
         const newPeople = e.target.value;
@@ -96,7 +99,7 @@ const MainCard = () => {
                         ))}
                         <button
                             className='bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan'
-                            onClick={() => setShowCustomInput(true)}
+                            onClick={() => handleTipPercentageChange('Custom')}
                         >Custom</button>
                     </div>
 
