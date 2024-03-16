@@ -26,7 +26,7 @@ const InnerCard = ({ tipAmount, totalPerPerson }) => {
                     <p className="text-primary-strong-cyan py-2 pl-2 pr-10 rounded-lg font-bold text-input">{totalPerPerson}</p>
                 </div>
             </div>
-            <button className="bg-neutral-dark-grayish-cyan text-neutral-very-dark-cyan font-bold font-md py-2 px-4 rounded-md mt-auto hover:bg-primary-strong-cyan">RESET</button>
+
         </>
     )
 }
