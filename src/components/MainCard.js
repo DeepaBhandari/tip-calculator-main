@@ -25,14 +25,12 @@ const MainCard = () => {
     const handleBillAmountChange = (e) => {
         const newBillAmount = e.target.value;
         setBillAmount(newBillAmount);
-
         const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(tipPercentage, newBillAmount, people);
         setTipAmount(tipAmountPerPerson.toFixed(2));
         setTotalPerPerson(totalPerPerson.toFixed(2));
     };
     const handleTipPercentageChange = (selectedTipPercentage) => {
         setTipPercentage(selectedTipPercentage);
-
         const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(selectedTipPercentage, billAmount, people);
         setTipAmount(tipAmountPerPerson.toFixed(2));
         setTotalPerPerson(totalPerPerson.toFixed(2));
@@ -55,6 +53,7 @@ const MainCard = () => {
         setTipAmount(tipAmountPerPerson.toFixed(2));
         setTotalPerPerson(totalPerPerson.toFixed(2));
     };
+
 
     const handleReset = () => {
         setBillAmount('');
