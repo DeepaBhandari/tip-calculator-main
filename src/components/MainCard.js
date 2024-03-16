@@ -51,11 +51,16 @@ const MainCard = () => {
     const handleCustomPercentageChange = (e) => {
         const customPercentage = e.target.value;
         setCustomTipPercentage(customPercentage);
-
-        const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(customPercentage, billAmount, people);
-        setTipAmount(tipAmountPerPerson.toFixed(2));
-        setTotalPerPerson(totalPerPerson.toFixed(2));
+        if (!isNaN(customPercentage)) {
+            const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(parseFloat(customPercentage), billAmount, people);
+            setTipAmount(tipAmountPerPerson.toFixed(2));
+            setTotalPerPerson(totalPerPerson.toFixed(2));
+        } else {
+            setTipAmount(0.00);
+            setTotalPerPerson(0.00);
+        }
     };
+
 
 
     const handleReset = () => {
@@ -69,8 +74,8 @@ const MainCard = () => {
     };
 
     return (
-        <div className='bg-neutral-white flex justify-center shadow-lg rounded-lg p-6'>
-            <div className='flex flex-col  mr-4'>
+        <div className='bg-neutral-white flex  flex-col lg:flex-row justify-center shadow-lg rounded-lg p-6'>
+            <div className='flex  flex-col lg:w-1/2  mr-4'>
                 <div className='items-center mb-4'>
                     <label className='font-bold text-neutral-dark-grayish-cyan text-sm mb-1 mr-2'>Bill</label>
                     <div className='relative flex bg-neutral-very-light-grayish-cyan'>
@@ -91,16 +96,21 @@ const MainCard = () => {
                         {percentage && percentage.map((item, index) => (
                             <button
                                 key={index}
-                                className={`bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white hover:bg-primary-strong-cyan ${tipPercentage === item ? 'bg-primary-strong-cyan' : ''}`}
+                                className={`bg-neutral-very-dark-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-white hover:bg-primary-strong-cyan 
+                                ${tipPercentage === item ? 'bg-primary-strong-cyan' : ''}`}
                                 onClick={() => handleTipPercentageChange(item)}
                             >
                                 {item}%
                             </button>
                         ))}
                         <button
-                            className='bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan'
+                            className={`bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan
+                            ${showCustomInput ? 'bg-primary-dark-cyan' : ''}`}
                             onClick={() => handleTipPercentageChange('Custom')}
-                        >Custom</button>
+                        >
+                            Custom
+                        </button>
+
                     </div>
 
                     {showCustomInput && (
@@ -130,7 +140,7 @@ const MainCard = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col bg-neutral-very-dark-cyan p-6 rounded-md ml-auto'>
+            <div className='flex  flex-col lg:w-1/2 bg-neutral-very-dark-cyan p-6 rounded-md ml-auto mt-4'>
                 <InnerCard tipAmount={tipAmount} totalPerPerson={totalPerPerson} />
                 <button className="bg-neutral-dark-grayish-cyan text-neutral-very-dark-cyan font-bold font-md py-2 px-4 rounded-md mt-auto hover:bg-primary-strong-cyan" onClick={handleReset}>RESET</button>
             </div>
