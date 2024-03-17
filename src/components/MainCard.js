@@ -14,14 +14,16 @@ const MainCard = () => {
     const [showCustomInput, setShowCustomInput] = useState(false);
 
     const calculateTipAmount = (tipPercentage, billAmount, people) => {
-        if (tipPercentage === '' || billAmount === '' || people === '') {
+        if ((tipPercentage === '' || billAmount === '' || people === '') && !showCustomInput) {
             return { tipAmountPerPerson: 0.00, totalPerPerson: 0.00 };
         }
-        const totalTip = (parseFloat(tipPercentage) * parseFloat(billAmount)) / 100;
+        const tip = showCustomInput ? parseFloat(customTipPercentage) : parseFloat(tipPercentage);
+        const totalTip = (tip * parseFloat(billAmount)) / 100;
         const tipAmountPerPerson = totalTip / parseFloat(people);
         const totalPerPerson = (parseFloat(billAmount) / parseFloat(people)) + tipAmountPerPerson;
         return { tipAmountPerPerson, totalPerPerson };
     };
+
     const handleBillAmountChange = (e) => {
         const newBillAmount = e.target.value;
         setBillAmount(newBillAmount);
@@ -29,6 +31,7 @@ const MainCard = () => {
         setTipAmount(tipAmountPerPerson.toFixed(2));
         setTotalPerPerson(totalPerPerson.toFixed(2));
     };
+
     const handleTipPercentageChange = (selectedTipPercentage) => {
         setShowCustomInput(selectedTipPercentage === 'Custom');
         setTipPercentage(selectedTipPercentage);
@@ -52,7 +55,7 @@ const MainCard = () => {
         const customPercentage = e.target.value;
         setCustomTipPercentage(customPercentage);
         if (!isNaN(customPercentage)) {
-            const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(parseFloat(customPercentage), billAmount, people);
+            const { tipAmountPerPerson, totalPerPerson } = calculateTipAmount(customPercentage, billAmount, people);
             setTipAmount(tipAmountPerPerson.toFixed(2));
             setTotalPerPerson(totalPerPerson.toFixed(2));
         } else {
@@ -103,17 +106,36 @@ const MainCard = () => {
                                 {item}%
                             </button>
                         ))}
-                        <button
+                        {/* <button
                             className={`bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan
                             ${showCustomInput ? 'bg-primary-dark-cyan' : ''}`}
                             onClick={() => handleTipPercentageChange('Custom')}
                         >
                             Custom
-                        </button>
-
+                        </button> */}
+                        <input
+                            type="number"
+                            value={customTipPercentage}
+                            // value={customTipPercentage}
+                            onChange={handleCustomPercentageChange}
+                            className={`bg-neutral-very-light-grayish-cyan p-2 rounded-md cursor-pointer items-center justify-center flex text-neutral-dark-grayish-cyan font-bold hover:bg-primary-strong-cyan
+                            ${showCustomInput ? 'bg-primary-dark-cyan' : ''}`}
+                            placeholder="Custom"
+                        />
+                        {showCustomInput && (
+                            <div className="mt-4">
+                                <input
+                                    type="number"
+                                    value={customTipPercentage}
+                                    onChange={handleCustomPercentageChange}
+                                    className="border border-gray-300 rounded-md py-2 px-3 w-full"
+                                    placeholder="Enter custom tip percentage"
+                                />
+                            </div>
+                        )}
                     </div>
 
-                    {showCustomInput && (
+                    {/* {showCustomInput && (
                         <div className="mt-4">
                             <input
                                 type="number"
@@ -123,7 +145,7 @@ const MainCard = () => {
                                 placeholder="Enter custom tip percentage"
                             />
                         </div>
-                    )}
+                    )} */}
                 </div>
                 <div className='items-center mb-4'>
                     <label className='font-bold text-neutral-dark-grayish-cyan text-sm mb-1 mr-2'>Number of People</label>
